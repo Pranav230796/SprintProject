@@ -25,9 +25,9 @@ public class AdminController {
 	}
 	
 	@PostMapping("/admin")
-	public ResponseEntity<String> updateAdmin(@RequestBody Admin admin){
-		adminService.updateAdmin(admin);
-		return new ResponseEntity<String>("Admin Updated",HttpStatus.OK);
+	public ResponseEntity<Admin> updateAdmin(@RequestBody Admin admin){
+		Admin entity = adminService.updateAdmin(admin);
+		return new ResponseEntity<Admin>(entity,HttpStatus.OK);
 	}
 	
 	@GetMapping("/admin/{id}")
