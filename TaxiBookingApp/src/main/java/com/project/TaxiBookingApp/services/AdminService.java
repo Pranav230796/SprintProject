@@ -7,7 +7,7 @@ import com.project.TaxiBookingApp.entity.Admin;
 import com.project.TaxiBookingApp.repository.lAdminRepository;
 
 @Service
-public class iAdminServiceImpl implements iAdminServices{
+public class AdminService implements IAdminService{
 	
 	@Autowired
 	private lAdminRepository RepoService;

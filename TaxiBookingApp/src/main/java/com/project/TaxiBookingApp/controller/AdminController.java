@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.TaxiBookingApp.entity.Admin;
-import com.project.TaxiBookingApp.services.iAdminServices;
+import com.project.TaxiBookingApp.services.IAdminService;
 
 @RestController
 public class AdminController {
 	
 	@Autowired
-	private iAdminServices adminService;
+	private IAdminService adminService;
 	
 	@PostMapping("/admins")
 	public ResponseEntity<Admin> insertAdmin(@RequestBody Admin admin){

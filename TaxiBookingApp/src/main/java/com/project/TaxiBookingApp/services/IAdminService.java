@@ -2,7 +2,7 @@ package com.project.TaxiBookingApp.services;
 
 import com.project.TaxiBookingApp.entity.Admin;
 
-public interface iAdminServices {
+public interface IAdminService {
 
 	Admin insertAdmin(Admin admin);
 	Admin updateAdmin(Admin admin);
