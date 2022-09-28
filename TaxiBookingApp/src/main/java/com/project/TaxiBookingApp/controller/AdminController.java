@@ -1,5 +1,7 @@
 package com.project.TaxiBookingApp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.TaxiBookingApp.entity.Admin;
+import com.project.TaxiBookingApp.entity.TripBooking;
 import com.project.TaxiBookingApp.services.IAdminService;
 
 @RestController
@@ -35,4 +38,12 @@ public class AdminController {
 		adminService.deleteAdmin(id);
 		return new ResponseEntity<String>("Admin Deleted",HttpStatus.OK);
 	}
+	
+	@GetMapping("/adminTrips")
+	public ResponseEntity<List<TripBooking>> getTripsCustomerWise(){
+		List<TripBooking> list = adminService.getTripsCustomerWise();
+		return new ResponseEntity<List<TripBooking>>(list,HttpStatus.OK);
+	}
+	
+	
 }

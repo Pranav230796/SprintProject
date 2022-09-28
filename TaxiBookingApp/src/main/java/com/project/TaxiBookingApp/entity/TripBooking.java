@@ -2,9 +2,10 @@ package com.project.TaxiBookingApp.entity;
 
 import java.time.LocalDateTime;
 
+
 import javax.persistence.Entity;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
 @Entity
 public class TripBooking {

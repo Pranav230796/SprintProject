@@ -1,20 +1,21 @@
 package com.project.TaxiBookingApp.entity;
 
+
 import javax.persistence.Entity;
 
 import javax.persistence.Id;
 
 @Entity
-public class Admin extends User{
+public class Customer extends User{
 	
 	@Id
 	private int id;
 	
-	public Admin() {
+	public Customer() {
 		super();
 	}
 
-	public Admin(String username, String password, long phoneNo, String emailId, int id) {
+	public Customer(String username, String password, long phoneNo, String emailId, int id) {
 		super(username, password, phoneNo, emailId);
 		this.id = id;
 	}
@@ -29,3 +30,4 @@ public class Admin extends User{
 	
 	
 }
+
