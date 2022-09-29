@@ -11,7 +11,7 @@ import com.project.TaxiBookingApp.repository.IDriverRepository;
 
 
 @Service
-public class iDriverServiceImpl implements iDriverServices{
+public class DriverService implements IDriverService{
 
 	@Autowired
 	private IDriverRepository RepoServ;

@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import com.project.TaxiBookingApp.entity.Driver;
 
-public interface iDriverServices {
+public interface IDriverService {
 	
 	Driver insertDriver(Driver driver);
 	Driver updateDriver(Driver driver);
