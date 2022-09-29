@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.project.TaxiBookingApp.entity.Driver;
-import com.project.TaxiBookingApp.services.iDriverServices;
+import com.project.TaxiBookingApp.services.IDriverService;
 
 @RestController
 public class DriverController {
 	
 	@Autowired
-	private iDriverServices driverService;
+	private IDriverService driverService;
 	
 	@PostMapping("/driver")
 	public String insertDriver(@RequestBody Driver driver)
