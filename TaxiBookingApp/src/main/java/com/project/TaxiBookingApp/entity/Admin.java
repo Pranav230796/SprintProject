@@ -14,7 +14,7 @@ public class Admin extends User{
 		super();
 	}
 
-	public Admin(String username, String password, long phoneNo, String emailId, int id) {
+	public Admin(String username, String password, String phoneNo, String emailId, int id) {
 		super(username, password, phoneNo, emailId);
 		this.id = id;
 	}

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.TaxiBookingApp.entity.Driver;
+import com.project.TaxiBookingApp.exception.DriverAlreadyExistException;
 import com.project.TaxiBookingApp.repository.IDriverRepository;
 
 
@@ -16,8 +17,10 @@ public class DriverService implements IDriverService{
 	@Autowired
 	private IDriverRepository RepoServ;
 	@Override
-	public Driver insertDriver(Driver driver) {
-		// TODO Auto-generated method stub
+	public Driver insertDriver(Driver driver) throws DriverAlreadyExistException{
+		if(RepoServ.existsById(driver.getDriverId())) {
+			throw new DriverAlreadyExistException();
+		}
 		Driver insertedEntity=RepoServ.save(driver);
 		return insertedEntity;
 	}

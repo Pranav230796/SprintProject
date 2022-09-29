@@ -5,10 +5,11 @@ import java.util.Optional;
 
 
 import com.project.TaxiBookingApp.entity.Driver;
+import com.project.TaxiBookingApp.exception.DriverAlreadyExistException;
 
 public interface IDriverService {
 	
-	Driver insertDriver(Driver driver);
+	Driver insertDriver(Driver driver) throws DriverAlreadyExistException;
 	Driver updateDriver(Driver driver);
 	void deleteDriver(int driverId);
 	Optional<Driver> viewDriver(int driverId);

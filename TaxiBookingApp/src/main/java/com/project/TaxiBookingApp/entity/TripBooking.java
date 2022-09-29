@@ -21,10 +21,11 @@ public class TripBooking {
 	private Boolean status;
 	private float distanceInKm;
 	
-	
-	
-	
-	
+	public TripBooking() {
+		super();
+	}
+
+
 	public TripBooking(int tripBookingId, int customerId, String fromLocation, String toLocation,
 			LocalDateTime fromDateTime, LocalDateTime toDateTime, Boolean status, float distanceInKm) {
 		super();

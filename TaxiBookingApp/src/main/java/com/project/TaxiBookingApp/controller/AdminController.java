@@ -1,5 +1,6 @@
 package com.project.TaxiBookingApp.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.TaxiBookingApp.entity.Admin;
 import com.project.TaxiBookingApp.entity.TripBooking;
+import com.project.TaxiBookingApp.exception.AdminAlreadyExistException;
 import com.project.TaxiBookingApp.services.IAdminService;
 
 @RestController
@@ -23,7 +25,7 @@ public class AdminController {
 	private IAdminService adminService;
 	
 	@PostMapping("/admins")
-	public ResponseEntity<Admin> insertAdmin(@RequestBody Admin admin){
+	public ResponseEntity<Admin> insertAdmin(@RequestBody Admin admin) throws AdminAlreadyExistException{
 		Admin entity = adminService.insertAdmin(admin);
 		return new ResponseEntity<Admin>(entity,HttpStatus.ACCEPTED);
 	}
@@ -46,5 +48,16 @@ public class AdminController {
 		return new ResponseEntity<List<TripBooking>>(list,HttpStatus.OK);
 	}
 	
+	@GetMapping("/adminDatewise")
+	public ResponseEntity<List<TripBooking>> getTripDatewise(){
+		List<TripBooking> list = adminService.getTripDatewise();
+		return new ResponseEntity<List<TripBooking>>(list,HttpStatus.OK);
+	}
+	
+//	@GetMapping("/adminDays/{id}/{from}/{to}")
+//	public ResponseEntity<List<TripBooking>> getAllTripsForDays(@PathVariable("id") int customerId,@PathVariable("from") LocalDateTime fromDate,@PathVariable("to") LocalDateTime toDate){
+//		List<TripBooking> list = adminService.getAllTripsForDays(customerId, fromDate, toDate);
+//		return new ResponseEntity<List<TripBooking>>(list,HttpStatus.ACCEPTED);
+//	}
 	
 }

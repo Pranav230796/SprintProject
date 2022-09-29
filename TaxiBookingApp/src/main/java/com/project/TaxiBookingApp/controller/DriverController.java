@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.project.TaxiBookingApp.entity.Driver;
+import com.project.TaxiBookingApp.exception.DriverAlreadyExistException;
 import com.project.TaxiBookingApp.services.IDriverService;
 
 @RestController
@@ -25,16 +26,15 @@ public class DriverController {
 	private IDriverService driverService;
 	
 	@PostMapping("/driver")
-	public String insertDriver(@RequestBody Driver driver)
-	{
+	public ResponseEntity<Driver> insertDriver(@RequestBody Driver driver) throws DriverAlreadyExistException{
 		Driver entity=driverService.insertDriver(driver);
-		return "Driver saved successfully";
+		return new ResponseEntity<Driver>(entity,HttpStatus.OK);
 	}
 	
 	@PostMapping("/updateDriver")
-	public String updateDriver(@RequestBody Driver driver){
+	public ResponseEntity<Driver> updateDriver(@RequestBody Driver driver){
 		Driver entity = driverService.updateDriver(driver);
-		return "Driver details updated succesfully";
+		return new ResponseEntity<Driver>(entity,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/delete/driver/{id}")
@@ -44,15 +44,13 @@ public class DriverController {
 	}
 	
 	@GetMapping("/drivers/{id}")
-	public ResponseEntity<Optional<Driver>> getDriverById(@PathVariable int id)
-	{
+	public ResponseEntity<Optional<Driver>> getDriverById(@PathVariable int id){
 		Optional<Driver> driver=driverService.viewDriver(id);
 		return new ResponseEntity<Optional<Driver>>(driver,HttpStatus.OK);
 	}
 	
 	@GetMapping("/drivers/best")
-	public ResponseEntity<List<Driver>> getBestDrivers()
-	{
+	public ResponseEntity<List<Driver>> getBestDrivers(){
 		List<Driver> drivers=driverService.getBestDrivers();
 		return new ResponseEntity<List<Driver>>(drivers,HttpStatus.OK);
 	}

@@ -7,10 +7,10 @@ public abstract class User {
 	
 	private String username;
 	private String password;
-	private long phoneNo;
+	private String phoneNo;
 	private String emailId;
 		
-	public User(String username, String password, long phoneNo, String emailId) {
+	public User(String username, String password, String phoneNo, String emailId) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -30,7 +30,7 @@ public abstract class User {
 		return password;
 	}
 
-	public long getPhoneNo() {
+	public String getPhoneNo() {
 		return phoneNo;
 	}
 
@@ -46,7 +46,7 @@ public abstract class User {
 		this.password = password;
 	}
 
-	public void setPhoneNo(long phoneNo) {
+	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
 

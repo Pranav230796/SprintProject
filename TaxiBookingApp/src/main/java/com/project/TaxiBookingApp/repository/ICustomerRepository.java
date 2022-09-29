@@ -1,10 +1,10 @@
 package com.project.TaxiBookingApp.repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.project.TaxiBookingApp.entity.Customer;
@@ -13,9 +13,12 @@ import com.project.TaxiBookingApp.entity.Customer;
 @Repository
 public interface ICustomerRepository extends JpaRepository<Customer, Integer>{
 
+	@Query(value = "select * from customer",nativeQuery = true)
 	public List<Customer> findviewCustomers();
 
-	public Optional<Customer> findvalidateCustomer();
+	@Query(value = "select * from customer where id =:customerId",nativeQuery=true)
+	public List<Customer> viewCustomerById(@Param("customerId") int customerId);
 
-	public Optional<Customer> findvalidateCustomer(String username, String password);
+//	@
+//	public Optional<Customer> findvalidateCustomer(String username, String password);
 }

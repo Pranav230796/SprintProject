@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.TaxiBookingApp.entity.Customer;
+import com.project.TaxiBookingApp.exception.CustomerAlreadyExistException;
 import com.project.TaxiBookingApp.services.CustomerService;
 
 
@@ -27,7 +28,7 @@ public class CustomerController {
 	private CustomerService customerService;
 	
 	@PostMapping("/customers")
-	public ResponseEntity<Customer> insertAdmin(@RequestBody Customer customer){
+	public ResponseEntity<Customer> insertAdmin(@RequestBody Customer customer) throws CustomerAlreadyExistException{
 		Customer entity = customerService.insertCustomer(customer);
 		return new ResponseEntity<Customer>(entity,HttpStatus.ACCEPTED);
 	}
@@ -51,15 +52,15 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/customers/{id}")
-	public ResponseEntity<Optional<Customer>> getCustomerById(@PathVariable int id){
-		Optional<Customer> customer=customerService.viewCustomer(id);
-		return new ResponseEntity<Optional<Customer>>(customer,HttpStatus.OK);
+	public ResponseEntity<List<Customer>> getCustomerById(@PathVariable int id){
+		List<Customer> customer=customerService.viewCustomerById(id);
+		return new ResponseEntity<List<Customer>>(customer,HttpStatus.OK);
 	}
 	
-	@GetMapping("/customers/validate")
-	public ResponseEntity<Optional<Customer>> validateCustomer(@PathVariable String username,String password){
-		Optional<Customer> customer=customerService.validateCustomer(username,password);
-		return new ResponseEntity<Optional<Customer>>(customer,HttpStatus.OK);
-	}
+//	@GetMapping("/customers/validate")
+//	public ResponseEntity<Optional<Customer>> validateCustomer(@PathVariable String username,String password){
+//		Optional<Customer> customer=customerService.validateCustomer(username,password);
+//		return new ResponseEntity<Optional<Customer>>(customer,HttpStatus.OK);
+//	}
 }
 

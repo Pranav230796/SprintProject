@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.TaxiBookingApp.entity.Customer;
+import com.project.TaxiBookingApp.exception.CustomerAlreadyExistException;
 import com.project.TaxiBookingApp.repository.ICustomerRepository;
 
 
@@ -19,7 +20,10 @@ public class CustomerService implements ICustomerService{
 	private ICustomerRepository RepoService;
 
 	@Override
-	public Customer insertCustomer(Customer customer) {
+	public Customer insertCustomer(Customer customer) throws CustomerAlreadyExistException{
+		if(RepoService.existsById(customer.getId())) {
+			throw new CustomerAlreadyExistException();
+		}
 		Customer InsertedEntity = RepoService.save(customer);
 		return InsertedEntity;
 	}
@@ -41,15 +45,15 @@ public class CustomerService implements ICustomerService{
 		return customers;
 	}
 	@Override
-	public Optional<Customer> viewCustomer(int customerId) {
-		Optional<Customer> getEntity=RepoService.findById(customerId);
+	public List<Customer> viewCustomerById(int customerId) {
+		List<Customer> getEntity = RepoService.viewCustomerById(customerId);
 		return getEntity;
 	}
-	@Override
-	public Optional<Customer> validateCustomer(String username, String password) {
-		Optional<Customer> validateEntity=RepoService.findvalidateCustomer(username,password);
-		return validateEntity;
-	}
+//	@Override
+//	public Optional<Customer> validateCustomer(String username, String password) {
+//		Optional<Customer> validateEntity=RepoService.findvalidateCustomer(username,password);
+//		return validateEntity;
+//	}
 
 }
 

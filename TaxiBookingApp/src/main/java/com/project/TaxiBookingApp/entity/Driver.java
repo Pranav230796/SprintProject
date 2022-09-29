@@ -19,7 +19,7 @@ public class Driver extends User{
 		super();
 	}
 
-	public Driver(String username, String password, long phoneNo, String emailId, int driverId, String address,
+	public Driver(String username, String password, String phoneNo, String emailId, int driverId, String address,
 			String licenceNo, float rating) {
 		super(username, password, phoneNo, emailId);
 		this.driverId = driverId;
