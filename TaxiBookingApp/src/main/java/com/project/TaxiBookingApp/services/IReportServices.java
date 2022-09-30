@@ -6,6 +6,6 @@ import com.project.TaxiBookingApp.entity.Report;
 public interface IReportServices {
 	Report insertReport(Report report);
 	Report updateReport(Report report);
-	void deleteReport(long reportId);
-	Optional<Report> viewReport(long reportId);
+	void deleteReport(int reportId);
+	Optional<Report> viewReport(int reportId);
 }

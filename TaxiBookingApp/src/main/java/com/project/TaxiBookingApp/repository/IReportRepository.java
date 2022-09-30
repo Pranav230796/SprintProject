@@ -7,6 +7,7 @@ import com.project.TaxiBookingApp.entity.Report;
 
 
 @Repository
-public interface IReportRepository extends JpaRepository<Report, Long> {
+public interface IReportRepository extends JpaRepository<Report, Integer> {
+
 
 }

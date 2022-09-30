@@ -15,7 +15,7 @@ public class Driver extends User{
 	private String licenceNo;
 	private float rating;
 	@OneToOne
-	@JoinColumn(name="cabId")
+	@JoinColumn(name="taxiId")
 	private Taxi taxi;
 	
 	

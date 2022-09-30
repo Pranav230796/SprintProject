@@ -16,21 +16,18 @@ public class TripBookingService implements ITripBookingService{
 	
 	@Override
 	public TripBooking insertTripBooking(TripBooking tripBooking) {
-		// TODO Auto-generated method stub
 		TripBooking Result = tripRepo.save(tripBooking);
 		return Result;
 	}
 
 	@Override
 	public TripBooking updateTripBooking(TripBooking tripBooking) {
-		// TODO Auto-generated method stub
 		TripBooking Result = tripRepo.save(tripBooking);
 		return Result;
 	}
 
 	@Override
 	public void deleteTripBooking(int tripBookingId) {
-		// TODO Auto-generated method stub
 		tripRepo.deleteById(tripBookingId);
 	}
 

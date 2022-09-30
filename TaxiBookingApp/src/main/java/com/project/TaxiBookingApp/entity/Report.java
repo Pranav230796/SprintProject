@@ -2,24 +2,20 @@ package com.project.TaxiBookingApp.entity;
 
 import javax.persistence.Entity;
 
+
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 @Entity
 
 public class Report {
 	
 	@Id
-	private Long id;
+	private int id;
 	
 	private String content;
 	
 	private String licenceNo;
-	
-	@OneToOne
-	@JoinColumn(name="custId")
-	private Customer customerId;
+
 
 
 	public Report() {
@@ -27,22 +23,17 @@ public class Report {
 	}
 
 
-	public Report(Long id, String content, String licenceNo, Customer customerId) {
+	public Report(int id, String content, String licenceNo) {
 		super();
 		this.id = id;
 		this.content = content;
 		this.licenceNo = licenceNo;
-		this.customerId = customerId;
+		//this.customerId = customerId;
 	}
 
 
-	public Long getId() {
+	public int getId() {
 		return id;
-	}
-
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 
@@ -51,31 +42,34 @@ public class Report {
 	}
 
 
+	public String getLicenceNo() {
+		return licenceNo;
+	}
+
+
+//	public int getCustomerId() {
+//		return customerId;
+//	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
 	public void setContent(String content) {
 		this.content = content;
 	}
 
 
-	public String getDriverId() {
-		return licenceNo;
-	}
-
-
-	public void setDriverId(String licenceNo) {
+	public void setLicenceNo(String licenceNo) {
 		this.licenceNo = licenceNo;
 	}
 
+//
+//	public void setCustomerId(int customerId) {
+//		this.customerId = customerId;
+//	}
 
-	public Customer getCustId() {
-		return customerId;
-	}
-
-
-	public void setCustId(Customer custId) {
-		this.customerId = custId;
-	}
-
-	
-	
 	
 }

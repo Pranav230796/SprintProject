@@ -17,7 +17,6 @@ public class ReportService implements IReportServices {
 
 	@Override
 	public Report insertReport(Report report) {
-		// TODO Auto-generated method stub
 		Report insertedEntity=RepoServ.save(report);
 		return insertedEntity;
 
@@ -25,21 +24,18 @@ public class ReportService implements IReportServices {
 
 	@Override
 	public Report updateReport(Report report) {
-		// TODO Auto-generated method stub
 		Report updatedEntity=RepoServ.save(report);
 		return updatedEntity;
 
 	}
 
 	@Override
-	public void deleteReport(long reportId) {
-		// TODO Auto-generated method stub
+	public void deleteReport(int reportId) {
 		RepoServ.deleteById(reportId);
 	}
 
 	@Override
-	public Optional<Report> viewReport(long reportId) {
-		// TODO Auto-generated method stub
+	public Optional<Report> viewReport(int reportId) {
 		Optional<Report> getEntity=RepoServ.findById(reportId);
 		return getEntity;
 

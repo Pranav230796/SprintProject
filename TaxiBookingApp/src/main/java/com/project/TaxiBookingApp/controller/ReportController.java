@@ -24,8 +24,7 @@ public class ReportController {
 	private IReportServices reportService;
 	
 	@PostMapping("/report")
-	public String insertReport(@RequestBody Report report)
-	{
+	public String insertReport(@RequestBody Report report){
 		Report entity=reportService.insertReport(report);
 		return "Report added successfully";
 	}
@@ -37,13 +36,13 @@ public class ReportController {
 	}
 	
 	@DeleteMapping("/delete/report/{id}")
-	public ResponseEntity<String> deleteReport(@PathVariable("id") long id){
+	public ResponseEntity<String> deleteReport(@PathVariable("id") int id){
 		reportService.deleteReport(id);
 		return new ResponseEntity<String>("Report Deleted",HttpStatus.OK);
 	}
 	
 	@GetMapping("/reports/{id}")
-	public ResponseEntity<Optional<Report>> getReportById(@PathVariable long id)
+	public ResponseEntity<Optional<Report>> getReportById(@PathVariable int id)
 	{
 		Optional<Report> report=reportService.viewReport(id);
 		return new ResponseEntity<Optional<Report>>(report,HttpStatus.OK);
