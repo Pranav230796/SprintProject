@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.TaxiBookingApp.entity.Taxi;
+import com.project.TaxiBookingApp.exception.TaxiAlreadyExistException;
 import com.project.TaxiBookingApp.services.ITaxiService;
 
 @RestController
@@ -22,8 +23,7 @@ public class TaxiController {
 	private ITaxiService taxiserv;
 	
 	@PostMapping("/taxi")
-	public ResponseEntity<String> insertTaxi(@RequestBody Taxi taxi)
-	{
+	public ResponseEntity<String> insertTaxi(@RequestBody Taxi taxi) throws TaxiAlreadyExistException{
 		Taxi tax=taxiserv.insertTaxi(taxi);
 		return new ResponseEntity<String>("Taxi saved successfully.",HttpStatus.OK);
 	}

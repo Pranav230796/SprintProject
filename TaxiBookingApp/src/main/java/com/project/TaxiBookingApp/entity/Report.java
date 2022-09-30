@@ -3,6 +3,8 @@ package com.project.TaxiBookingApp.entity;
 import javax.persistence.Entity;
 
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 
@@ -13,24 +15,24 @@ public class Report {
 	
 	private String content;
 	
-	private String driverId;
+	private String licenceNo;
 	
-	
-	private String custId;
+	@OneToOne
+	@JoinColumn(name="custId")
+	private Customer customerId;
 
 
 	public Report() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 
-	public Report(Long id, String content, String driverId, String custId) {
+	public Report(Long id, String content, String licenceNo, Customer customerId) {
 		super();
 		this.id = id;
 		this.content = content;
-		this.driverId = driverId;
-		this.custId = custId;
+		this.licenceNo = licenceNo;
+		this.customerId = customerId;
 	}
 
 
@@ -55,22 +57,22 @@ public class Report {
 
 
 	public String getDriverId() {
-		return driverId;
+		return licenceNo;
 	}
 
 
-	public void setDriverId(String driverId) {
-		this.driverId = driverId;
+	public void setDriverId(String licenceNo) {
+		this.licenceNo = licenceNo;
 	}
 
 
-	public String getCustId() {
-		return custId;
+	public Customer getCustId() {
+		return customerId;
 	}
 
 
-	public void setCustId(String custId) {
-		this.custId = custId;
+	public void setCustId(Customer custId) {
+		this.customerId = custId;
 	}
 
 	

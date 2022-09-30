@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.TaxiBookingApp.entity.Admin;
 import com.project.TaxiBookingApp.entity.TripBooking;
 import com.project.TaxiBookingApp.exception.AdminAlreadyExistException;
+import com.project.TaxiBookingApp.exception.AdminDoesNotExistException;
 import com.project.TaxiBookingApp.services.IAdminService;
 
 @RestController
@@ -37,7 +38,7 @@ public class AdminController {
 	}
 	
 	@DeleteMapping("/admin/{id}")
-	public ResponseEntity<String> deleteAdmin(@PathVariable("id") int id){
+	public ResponseEntity<String> deleteAdmin(@PathVariable("id") int id) throws AdminDoesNotExistException{
 		adminService.deleteAdmin(id);
 		return new ResponseEntity<String>("Admin Deleted",HttpStatus.OK);
 	}

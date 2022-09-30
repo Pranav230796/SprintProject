@@ -1,19 +1,21 @@
 package com.project.TaxiBookingApp.entity;
 
 import java.time.LocalDateTime;
-
-
 import javax.persistence.Entity;
-
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class TripBooking {
 
 	@Id
 	private int tripBookingId;
-	private int customerId;
-//	private Driver driver;
+	@OneToOne
+	@JoinColumn(name="custId")
+	private Customer customerId;
+	//private Driver driver;
 	private String fromLocation;
 	private String toLocation;
 	private LocalDateTime fromDateTime;
@@ -26,7 +28,7 @@ public class TripBooking {
 	}
 
 
-	public TripBooking(int tripBookingId, int customerId, String fromLocation, String toLocation,
+	public TripBooking(int tripBookingId, Customer customerId, String fromLocation, String toLocation,
 			LocalDateTime fromDateTime, LocalDateTime toDateTime, Boolean status, float distanceInKm) {
 		super();
 		this.tripBookingId = tripBookingId;
@@ -47,10 +49,10 @@ public class TripBooking {
 	public void setTripBookingId(int tripBookingId) {
 		this.tripBookingId = tripBookingId;
 	}
-	public int getCustomerId() {
+	public Customer getCustomerId() {
 		return customerId;
 	}
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(Customer customerId) {
 		this.customerId = customerId;
 	}
 	

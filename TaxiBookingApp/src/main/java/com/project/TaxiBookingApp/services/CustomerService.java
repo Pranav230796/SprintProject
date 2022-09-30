@@ -41,7 +41,7 @@ public class CustomerService implements ICustomerService{
 	
 	@Override
 	public List<Customer> viewCustomers() {
-		List<Customer> customers=RepoService.findviewCustomers();
+		List<Customer> customers=RepoService.findAll();
 		return customers;
 	}
 	@Override

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.project.TaxiBookingApp.entity.Admin;
 import com.project.TaxiBookingApp.entity.TripBooking;
 import com.project.TaxiBookingApp.exception.AdminAlreadyExistException;
+import com.project.TaxiBookingApp.exception.AdminDoesNotExistException;
 import com.project.TaxiBookingApp.repository.ITripBookingRepository;
 import com.project.TaxiBookingApp.repository.lAdminRepository;
 
@@ -36,7 +37,10 @@ public class AdminService implements IAdminService{
 	}
 
 	@Override
-	public void deleteAdmin(int adminId) {
+	public void deleteAdmin(int adminId) throws AdminDoesNotExistException{
+		if(!RepoAdminService.existsById(adminId)) {
+			throw new AdminDoesNotExistException();
+		}
 		RepoAdminService.deleteById(adminId);
 	}
 

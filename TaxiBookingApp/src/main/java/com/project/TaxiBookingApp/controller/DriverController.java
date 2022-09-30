@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.TaxiBookingApp.entity.Driver;
 import com.project.TaxiBookingApp.exception.DriverAlreadyExistException;
+import com.project.TaxiBookingApp.exception.DriverDoesNotExistException;
 import com.project.TaxiBookingApp.services.IDriverService;
 
 @RestController
@@ -31,6 +32,12 @@ public class DriverController {
 		return new ResponseEntity<Driver>(entity,HttpStatus.OK);
 	}
 	
+	@GetMapping("/driver/{Did}/{Tid}")
+	public ResponseEntity<Driver> assignTaxi(@PathVariable("Did") int driverId, @PathVariable("Tid") int cabId){
+		Driver entity = driverService.assignTaxi(driverId , cabId);
+		return new ResponseEntity<Driver>(entity,HttpStatus.OK);
+	}
+	
 	@PostMapping("/updateDriver")
 	public ResponseEntity<Driver> updateDriver(@RequestBody Driver driver){
 		Driver entity = driverService.updateDriver(driver);
@@ -38,13 +45,13 @@ public class DriverController {
 	}
 	
 	@DeleteMapping("/delete/driver/{id}")
-	public ResponseEntity<String> deleteDriver(@PathVariable("id") int id){
+	public ResponseEntity<String> deleteDriver(@PathVariable("id") int id) throws DriverDoesNotExistException{
 		driverService.deleteDriver(id);
 		return new ResponseEntity<String>("Driver Deleted",HttpStatus.OK);
 	}
 	
 	@GetMapping("/drivers/{id}")
-	public ResponseEntity<Optional<Driver>> getDriverById(@PathVariable int id){
+	public ResponseEntity<Optional<Driver>> getDriverById(@PathVariable int id) throws DriverDoesNotExistException{
 		Optional<Driver> driver=driverService.viewDriver(id);
 		return new ResponseEntity<Optional<Driver>>(driver,HttpStatus.OK);
 	}
