@@ -5,7 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.TaxiBookingApp.entity.Customer;
+import com.project.TaxiBookingApp.entity.Driver;
 import com.project.TaxiBookingApp.entity.TripBooking;
+import com.project.TaxiBookingApp.repository.ICustomerRepository;
+import com.project.TaxiBookingApp.repository.IDriverRepository;
 import com.project.TaxiBookingApp.repository.ITripBookingRepository;
 
 @Service
@@ -13,6 +17,10 @@ public class TripBookingService implements ITripBookingService{
 
 	@Autowired
 	private ITripBookingRepository tripRepo;
+	@Autowired
+	private IDriverRepository driverRepo;
+	@Autowired
+	private ICustomerRepository custRepo;
 	
 	@Override
 	public TripBooking insertTripBooking(TripBooking tripBooking) {
@@ -42,6 +50,22 @@ public class TripBookingService implements ITripBookingService{
 	public TripBooking calculateBill() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public TripBooking assignDriver(int tripBookingId, int driverId) {
+		Driver driver = driverRepo.findById(driverId).get();
+		TripBooking trip = tripRepo.findById(tripBookingId).get();
+		trip.setDriver(driver);
+		return tripRepo.save(trip);
+	}
+
+	@Override
+	public TripBooking assignCustomer(int tripBookingId, int custId) {
+		Customer customer = custRepo.findById(custId).get();
+		TripBooking trip = tripRepo.findById(tripBookingId).get();
+		trip.setCustomer(customer);
+		return tripRepo.save(trip);
 	}
 
 }

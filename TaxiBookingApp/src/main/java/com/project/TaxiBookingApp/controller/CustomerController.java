@@ -1,7 +1,7 @@
 package com.project.TaxiBookingApp.controller;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.TaxiBookingApp.entity.Customer;
+import com.project.TaxiBookingApp.entity.TripBooking;
 import com.project.TaxiBookingApp.exception.CustomerAlreadyExistException;
 import com.project.TaxiBookingApp.services.CustomerService;
+import com.project.TaxiBookingApp.services.TripBookingService;
 
 
 
@@ -27,14 +29,17 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
+	@Autowired
+	private TripBookingService tripService;
+	
 	@PostMapping("/customers")
-	public ResponseEntity<Customer> insertAdmin(@RequestBody Customer customer) throws CustomerAlreadyExistException{
+	public ResponseEntity<Customer> insertCustomer(@RequestBody Customer customer) throws CustomerAlreadyExistException{
 		Customer entity = customerService.insertCustomer(customer);
 		return new ResponseEntity<Customer>(entity,HttpStatus.ACCEPTED);
 	}
 	
 	@PostMapping("/customer")
-	public ResponseEntity<Customer> updateAdmin(@RequestBody Customer customer){
+	public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer){
 		Customer entity = customerService.updateCustomer(customer);
 		return new ResponseEntity<Customer>(entity,HttpStatus.OK);
 	}
@@ -55,6 +60,24 @@ public class CustomerController {
 	public ResponseEntity<List<Customer>> getCustomerById(@PathVariable int id){
 		List<Customer> customer=customerService.viewCustomerById(id);
 		return new ResponseEntity<List<Customer>>(customer,HttpStatus.OK);
+	}
+	
+	@PostMapping("/tripbooking")
+	public ResponseEntity<TripBooking> insertTripBooking(@RequestBody TripBooking trip){
+		TripBooking entity = tripService.insertTripBooking(trip);
+		return new ResponseEntity<TripBooking>(entity,HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping("/tripbooking/{Tid}/{Did}")
+	public ResponseEntity<TripBooking> assignDriver(@PathVariable("Tid") int tripBookingId, @PathVariable("Did") int driverId){
+		TripBooking entity = tripService.assignDriver(tripBookingId, driverId);
+		return new ResponseEntity<TripBooking>(entity,HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping("/tripbooking/{tid}/{cid}")
+	public ResponseEntity<TripBooking> assignCustomer(@PathVariable("tid") int tripBookingId, @PathVariable("cid") int custId){
+		TripBooking entity = tripService.assignCustomer(tripBookingId, custId);
+		return new ResponseEntity<TripBooking>(entity,HttpStatus.ACCEPTED);
 	}
 	
 //	@GetMapping("/customers/validate")

@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class TripBooking {
 
@@ -14,8 +16,11 @@ public class TripBooking {
 	private int tripBookingId;
 	@OneToOne
 	@JoinColumn(name="custId")
-	private Customer customerId;
-	//private Driver driver;
+	private Customer customer;
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "driver_id")
+	private Driver driver;
 	private String fromLocation;
 	private String toLocation;
 	private LocalDateTime fromDateTime;
@@ -28,12 +33,12 @@ public class TripBooking {
 	}
 
 
-	public TripBooking(int tripBookingId, Customer customerId, String fromLocation, String toLocation,
-			LocalDateTime fromDateTime, LocalDateTime toDateTime, Boolean status, float distanceInKm) {
+	public TripBooking(int tripBookingId, Customer customer, String fromLocation, String toLocation,
+			LocalDateTime fromDateTime, LocalDateTime toDateTime, Boolean status, float distanceInKm, Driver driver) {
 		super();
 		this.tripBookingId = tripBookingId;
-		this.customerId = customerId;
-//		this.driver = driver;
+		this.customer = customer;
+		this.driver = driver;
 		this.fromLocation = fromLocation;
 		this.toLocation = toLocation;
 		this.fromDateTime = fromDateTime;
@@ -49,19 +54,19 @@ public class TripBooking {
 	public void setTripBookingId(int tripBookingId) {
 		this.tripBookingId = tripBookingId;
 	}
-	public Customer getCustomerId() {
-		return customerId;
+	public Customer getCustomer() {
+		return customer;
 	}
-	public void setCustomerId(Customer customerId) {
-		this.customerId = customerId;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 	
-//	public Driver getDriver() {
-//		return driver;
-//	}
-//	public void setDriver(Driver driver) {
-//		this.driver = driver;
-//	}
+	public Driver getDriver() {
+		return driver;
+	}
+	public void setDriver(Driver driver) {
+		this.driver = driver;
+	}
 	
 	public String getFromLocation() {
 		return fromLocation;
