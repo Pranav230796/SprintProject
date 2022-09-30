@@ -1,8 +1,10 @@
 package com.project.TaxiBookingApp.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 
 import javax.persistence.Id;
@@ -11,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Driver extends User{
@@ -25,8 +28,7 @@ public class Driver extends User{
 	private Taxi taxi;
 	
 	@JsonIgnore
-	@OneToMany
-	@JoinColumn(name = "tripBookingId")
+	@OneToMany(mappedBy = "driver", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<TripBooking> trips;
 	
 	
@@ -35,7 +37,7 @@ public class Driver extends User{
 	}
 
 	public Driver(String username, String password, String phoneNo, String emailId, int driverId, String address,
-			String licenceNo, float rating, Taxi taxi, List<TripBooking> trips) {
+			String licenceNo, float rating, Taxi taxi,List<TripBooking> trips) {
 		super(username, password, phoneNo, emailId);
 		this.driverId = driverId;
 		this.address = address;

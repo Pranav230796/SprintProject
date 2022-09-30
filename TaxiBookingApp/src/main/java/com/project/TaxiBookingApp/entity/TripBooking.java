@@ -1,13 +1,13 @@
 package com.project.TaxiBookingApp.entity;
 
 import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class TripBooking {
@@ -17,7 +17,6 @@ public class TripBooking {
 	@OneToOne
 	@JoinColumn(name="custId")
 	private Customer customer;
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "driver_id")
 	private Driver driver;
@@ -34,7 +33,7 @@ public class TripBooking {
 
 
 	public TripBooking(int tripBookingId, Customer customer, String fromLocation, String toLocation,
-			LocalDateTime fromDateTime, LocalDateTime toDateTime, Boolean status, float distanceInKm, Driver driver) {
+			LocalDateTime fromDateTime, LocalDateTime toDateTime, Boolean status, float distanceInKm,Driver driver) {
 		super();
 		this.tripBookingId = tripBookingId;
 		this.customer = customer;

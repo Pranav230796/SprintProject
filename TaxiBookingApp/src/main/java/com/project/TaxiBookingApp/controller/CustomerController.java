@@ -74,7 +74,7 @@ public class CustomerController {
 		return new ResponseEntity<TripBooking>(entity,HttpStatus.ACCEPTED);
 	}
 	
-	@GetMapping("/tripbooking/{tid}/{cid}")
+	@GetMapping("/tripbookings/{tid}/{cid}")
 	public ResponseEntity<TripBooking> assignCustomer(@PathVariable("tid") int tripBookingId, @PathVariable("cid") int custId){
 		TripBooking entity = tripService.assignCustomer(tripBookingId, custId);
 		return new ResponseEntity<TripBooking>(entity,HttpStatus.ACCEPTED);
