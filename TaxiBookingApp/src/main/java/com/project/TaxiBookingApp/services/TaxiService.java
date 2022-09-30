@@ -17,7 +17,7 @@ public class TaxiService implements ITaxiService{
 	
 	@Override
 	public Taxi insertTaxi(Taxi taxi) throws TaxiAlreadyExistException{
-		if(reposerv.existsById(taxi.getCabId())) {
+		if(reposerv.existsById(taxi.getTaxiId())) {
 			throw new TaxiAlreadyExistException();
 		}
 		Taxi insertedEntity=reposerv.save(taxi);

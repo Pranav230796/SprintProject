@@ -41,5 +41,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
 	public ResponseEntity<String> taxiAlreadyExist(TaxiAlreadyExistException taxiAlreadyExist){
 		return new ResponseEntity<String>("Taxi Already Exist",HttpStatus.CONFLICT);
 	}
+	
+	@ExceptionHandler(value=ReportAlreadyExistException.class)
+	public ResponseEntity<String> reportAlreadyExist(ReportAlreadyExistException reportAlreadyExist){
+		return new ResponseEntity<String>("Report Already Exist",HttpStatus.CONFLICT);
+	}
+	
+	@ExceptionHandler(value=ReportDoesNotExistException.class)
+	public ResponseEntity<String> reportDoesNotExist(ReportDoesNotExistException reportDoesNotExist){
+		return new ResponseEntity<String>("Report Does Not Exist",HttpStatus.CONFLICT);
+	}
 }
 

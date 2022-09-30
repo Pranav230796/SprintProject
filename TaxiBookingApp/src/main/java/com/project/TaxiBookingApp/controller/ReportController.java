@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.project.TaxiBookingApp.entity.Report;
+import com.project.TaxiBookingApp.exception.ReportAlreadyExistException;
+import com.project.TaxiBookingApp.exception.ReportDoesNotExistException;
 import com.project.TaxiBookingApp.services.IReportServices;
 
 @RestController
@@ -24,26 +26,25 @@ public class ReportController {
 	private IReportServices reportService;
 	
 	@PostMapping("/report")
-	public String insertReport(@RequestBody Report report){
+	public String insertReport(@RequestBody Report report) throws ReportAlreadyExistException{
 		Report entity=reportService.insertReport(report);
 		return "Report added successfully";
 	}
 	
 	@PostMapping("/updateReport")
-	public String updateReport(@RequestBody Report report){
+	public String updateReport(@RequestBody Report report) throws ReportDoesNotExistException{
 		Report entity = reportService.updateReport(report);
 		return "Report updated succesfully";
 	}
 	
 	@DeleteMapping("/delete/report/{id}")
-	public ResponseEntity<String> deleteReport(@PathVariable("id") int id){
+	public ResponseEntity<String> deleteReport(@PathVariable("id") int id) throws ReportDoesNotExistException{
 		reportService.deleteReport(id);
 		return new ResponseEntity<String>("Report Deleted",HttpStatus.OK);
 	}
 	
 	@GetMapping("/reports/{id}")
-	public ResponseEntity<Optional<Report>> getReportById(@PathVariable int id)
-	{
+	public ResponseEntity<Optional<Report>> getReportById(@PathVariable int id) throws ReportDoesNotExistException{
 		Optional<Report> report=reportService.viewReport(id);
 		return new ResponseEntity<Optional<Report>>(report,HttpStatus.OK);
 	}
