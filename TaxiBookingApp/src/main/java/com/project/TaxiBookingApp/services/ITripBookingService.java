@@ -12,7 +12,7 @@ public interface ITripBookingService {
 	TripBooking assignDriver(int tripBookingId,int driverId);
 	TripBooking updateTripBooking(TripBooking tripBooking);
 	void deleteTripBooking(int tripBookingId);
-	List<TripBooking> viewAllTripsCustomer();
-	TripBooking calculateBill();
+	TripBooking viewAllTripsCustomer(int custId);
+	float calculateBill(int CustId);
 	
 }

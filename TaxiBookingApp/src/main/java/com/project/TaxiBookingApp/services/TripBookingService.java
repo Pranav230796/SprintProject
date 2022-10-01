@@ -12,6 +12,8 @@ import com.project.TaxiBookingApp.repository.ICustomerRepository;
 import com.project.TaxiBookingApp.repository.IDriverRepository;
 import com.project.TaxiBookingApp.repository.ITripBookingRepository;
 
+import net.bytebuddy.agent.builder.AgentBuilder.RedefinitionStrategy;
+
 @Service
 public class TripBookingService implements ITripBookingService{
 
@@ -40,16 +42,20 @@ public class TripBookingService implements ITripBookingService{
 	}
 
 	@Override
-	public List<TripBooking> viewAllTripsCustomer() {
+	public TripBooking viewAllTripsCustomer(int custId) {
 		// TODO Auto-generated method stub
-		
-		return null;
+		TripBooking result = tripRepo.findById(custId).get();
+		return result;
 	}
 
 	@Override
-	public TripBooking calculateBill() {
+	public float calculateBill(int custid) {
 		// TODO Auto-generated method stub
-		return null;
+		TripBooking result = tripRepo.findById(custid).get();
+		
+		float rate = result.getDriver().getTaxi().getPerKmrate();
+		
+		return rate * result.getDistanceInKm();
 	}
 
 	@Override
