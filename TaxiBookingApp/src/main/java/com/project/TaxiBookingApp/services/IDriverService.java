@@ -5,6 +5,7 @@ import java.util.Optional;
 
 
 import com.project.TaxiBookingApp.entity.Driver;
+import com.project.TaxiBookingApp.entity.Login;
 import com.project.TaxiBookingApp.exception.DriverAlreadyExistException;
 import com.project.TaxiBookingApp.exception.DriverDoesNotExistException;
 
@@ -16,4 +17,5 @@ public interface IDriverService {
 	void deleteDriver(int driverId) throws DriverDoesNotExistException;
 	Optional<Driver> viewDriver(int driverId) throws DriverDoesNotExistException;
 	List<Driver> getBestDrivers();
+	boolean driverLogin(Login login);
 }

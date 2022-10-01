@@ -1,5 +1,6 @@
 package com.project.TaxiBookingApp.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -7,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
 
 @Entity
@@ -22,8 +26,8 @@ public class TripBooking {
 	private Driver driver;
 	private String fromLocation;
 	private String toLocation;
-	private LocalDateTime fromDateTime;
-	private LocalDateTime toDateTime;
+	private LocalDate fromDateTime;
+	private LocalDate toDateTime;
 	private Boolean status;
 	private float distanceInKm;
 	
@@ -33,7 +37,7 @@ public class TripBooking {
 
 
 	public TripBooking(int tripBookingId, Customer customer, String fromLocation, String toLocation,
-			LocalDateTime fromDateTime, LocalDateTime toDateTime, Boolean status, float distanceInKm,Driver driver) {
+			LocalDate fromDateTime, LocalDate toDateTime, Boolean status, float distanceInKm,Driver driver) {
 		super();
 		this.tripBookingId = tripBookingId;
 		this.customer = customer;
@@ -79,16 +83,16 @@ public class TripBooking {
 	public void setToLocation(String toLocation) {
 		this.toLocation = toLocation;
 	}
-	public LocalDateTime getFromDateTime() {
+	public LocalDate getFromDateTime() {
 		return fromDateTime;
 	}
-	public void setFromDateTime(LocalDateTime fromDateTime) {
+	public void setFromDateTime(LocalDate fromDateTime) {
 		this.fromDateTime = fromDateTime;
 	}
-	public LocalDateTime getToDateTime() {
+	public LocalDate getToDateTime() {
 		return toDateTime;
 	}
-	public void setToDateTime(LocalDateTime toDateTime) {
+	public void setToDateTime(LocalDate toDateTime) {
 		this.toDateTime = toDateTime;
 	}
 	public Boolean getStatus() {

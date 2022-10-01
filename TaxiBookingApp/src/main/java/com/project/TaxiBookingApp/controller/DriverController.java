@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.project.TaxiBookingApp.entity.Driver;
+import com.project.TaxiBookingApp.entity.Login;
 import com.project.TaxiBookingApp.exception.DriverAlreadyExistException;
 import com.project.TaxiBookingApp.exception.DriverDoesNotExistException;
 import com.project.TaxiBookingApp.services.IDriverService;
@@ -30,6 +31,14 @@ public class DriverController {
 	public ResponseEntity<Driver> insertDriver(@RequestBody Driver driver) throws DriverAlreadyExistException{
 		Driver entity=driverService.insertDriver(driver);
 		return new ResponseEntity<Driver>(entity,HttpStatus.OK);
+	}
+	
+	@PostMapping("/driver/login")
+	public ResponseEntity<String> adminLogin(@RequestBody Login login){
+		if(driverService.driverLogin(login)) {
+			return new ResponseEntity<String>("Login Successful.....",HttpStatus.ACCEPTED);
+		}
+		return new ResponseEntity<String>("Login failed......",HttpStatus.CONFLICT);
 	}
 	
 	@GetMapping("/driver/{Did}/{Tid}")

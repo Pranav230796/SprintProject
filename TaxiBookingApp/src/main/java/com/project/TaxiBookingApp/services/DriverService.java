@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.TaxiBookingApp.entity.Driver;
+import com.project.TaxiBookingApp.entity.Login;
 import com.project.TaxiBookingApp.entity.Taxi;
 import com.project.TaxiBookingApp.exception.DriverAlreadyExistException;
 import com.project.TaxiBookingApp.exception.DriverDoesNotExistException;
@@ -65,6 +66,15 @@ public class DriverService implements IDriverService{
 		Driver driver = RepoServ.findById(driverId).get();
 		driver.setTaxi(taxi);
 		return RepoServ.save(driver);
+	}
+	
+	public boolean driverLogin(Login login) {
+		String username = RepoServ.existsByUserName(login.getUsername());
+		String password = RepoServ.existsByPassword(login.getPassword());
+		if(username == null || password == null) {
+			return false;
+		}
+		return true;
 	}
 	
 	

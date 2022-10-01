@@ -1,7 +1,6 @@
 package com.project.TaxiBookingApp.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.TaxiBookingApp.entity.Customer;
+import com.project.TaxiBookingApp.entity.Login;
 import com.project.TaxiBookingApp.exception.CustomerAlreadyExistException;
+import com.project.TaxiBookingApp.exception.CustomerDoesNotExistException;
 import com.project.TaxiBookingApp.repository.ICustomerRepository;
 
 
@@ -29,13 +30,19 @@ public class CustomerService implements ICustomerService{
 	}
 
 	@Override
-	public Customer updateCustomer(Customer customer) {
+	public Customer updateCustomer(Customer customer) throws CustomerDoesNotExistException{
+		if(!RepoService.existsById(customer.getId())) {
+			throw new CustomerDoesNotExistException();
+		}
 		Customer UpdatedEntity = RepoService.save(customer);
 		return UpdatedEntity;
 	}
 
 	@Override
-	public void deleteCustomer(int CustomerId) {
+	public void deleteCustomer(int CustomerId) throws CustomerDoesNotExistException{
+		if(!RepoService.existsById(CustomerId)) {
+			throw new CustomerDoesNotExistException();
+		}
 		RepoService.deleteById(CustomerId);
 	}
 	
@@ -45,7 +52,10 @@ public class CustomerService implements ICustomerService{
 		return customers;
 	}
 	@Override
-	public List<Customer> viewCustomerById(int customerId) {
+	public List<Customer> viewCustomerById(int customerId) throws CustomerDoesNotExistException{
+		if(!RepoService.existsById(customerId)) {
+			throw new CustomerDoesNotExistException();
+		}
 		List<Customer> getEntity = RepoService.viewCustomerById(customerId);
 		return getEntity;
 	}
@@ -54,6 +64,15 @@ public class CustomerService implements ICustomerService{
 //		Optional<Customer> validateEntity=RepoService.findvalidateCustomer(username,password);
 //		return validateEntity;
 //	}
+
+	public boolean customerLogin(Login login) {
+		String username = RepoService.existsByUserName(login.getUsername());
+		String password = RepoService.existsByPassword(login.getPassword());
+		if(username == null || password == null) {
+			return false;
+		}
+		return true;
+	}
 
 }
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.TaxiBookingApp.entity.Admin;
+import com.project.TaxiBookingApp.entity.Login;
 import com.project.TaxiBookingApp.entity.TripBooking;
 import com.project.TaxiBookingApp.exception.AdminAlreadyExistException;
 import com.project.TaxiBookingApp.exception.AdminDoesNotExistException;
@@ -60,6 +61,15 @@ public class AdminService implements IAdminService{
 	public List<TripBooking> getTripDatewise() {
 		List<TripBooking> list = RepoTripService.getTripDatewise();
 		return list;
+	}
+	
+	public boolean adminLogin(Login login) {
+		String username = RepoAdminService.existsByUserName(login.getUsername());
+		String password = RepoAdminService.existsByPassword(login.getPassword());
+		if(username == null || password == null) {
+			return false;
+		}
+		return true;
 	}
 
 //	@Override

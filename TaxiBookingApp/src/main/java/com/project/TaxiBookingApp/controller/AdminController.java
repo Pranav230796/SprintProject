@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.TaxiBookingApp.entity.Admin;
+import com.project.TaxiBookingApp.entity.Login;
 import com.project.TaxiBookingApp.entity.TripBooking;
 import com.project.TaxiBookingApp.exception.AdminAlreadyExistException;
 import com.project.TaxiBookingApp.exception.AdminDoesNotExistException;
@@ -53,6 +54,14 @@ public class AdminController {
 	public ResponseEntity<List<TripBooking>> getTripDatewise(){
 		List<TripBooking> list = adminService.getTripDatewise();
 		return new ResponseEntity<List<TripBooking>>(list,HttpStatus.OK);
+	}
+	
+	@PostMapping("/admin/login")
+	public ResponseEntity<String> adminLogin(@RequestBody Login login){
+		if(adminService.adminLogin(login)) {
+			return new ResponseEntity<String>("Login Successful.....",HttpStatus.ACCEPTED);
+		}
+		return new ResponseEntity<String>("Login failed......",HttpStatus.CONFLICT);
 	}
 	
 //	@GetMapping("/adminDays/{id}/{from}/{to}")

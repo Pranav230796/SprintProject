@@ -1,10 +1,9 @@
 package com.project.TaxiBookingApp.services;
 
-import java.time.LocalDateTime;
-
 import java.util.List;
 
 import com.project.TaxiBookingApp.entity.Admin;
+import com.project.TaxiBookingApp.entity.Login;
 import com.project.TaxiBookingApp.entity.TripBooking;
 import com.project.TaxiBookingApp.exception.AdminAlreadyExistException;
 import com.project.TaxiBookingApp.exception.AdminDoesNotExistException;
@@ -18,4 +17,5 @@ public interface IAdminService {
 	List<TripBooking> getTripsCustomerWise();
 	List<TripBooking> getTripDatewise();
 //	List<TripBooking> getAllTripsForDays(int customerId,LocalDateTime fromDate, LocalDateTime toDate);
+	boolean adminLogin(Login login);
 }

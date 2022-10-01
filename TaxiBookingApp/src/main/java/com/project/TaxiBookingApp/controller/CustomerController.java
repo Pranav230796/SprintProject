@@ -1,5 +1,6 @@
 package com.project.TaxiBookingApp.controller;
 
+import java.text.ParseException;
 import java.util.List;
 
 
@@ -16,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.TaxiBookingApp.entity.Customer;
+import com.project.TaxiBookingApp.entity.Login;
 import com.project.TaxiBookingApp.entity.TripBooking;
 import com.project.TaxiBookingApp.exception.CustomerAlreadyExistException;
+import com.project.TaxiBookingApp.exception.CustomerDoesNotExistException;
 import com.project.TaxiBookingApp.services.CustomerService;
 import com.project.TaxiBookingApp.services.TripBookingService;
 
@@ -32,6 +35,14 @@ public class CustomerController {
 	@Autowired
 	private TripBookingService tripService;
 	
+	@PostMapping("/customer/login")
+	public ResponseEntity<String> customerLogin(@RequestBody Login login){
+		if(customerService.customerLogin(login)) {
+			return new ResponseEntity<String>("Login Successfull .....",HttpStatus.ACCEPTED);
+		}
+		return new ResponseEntity<String>("Login Failed ......",HttpStatus.CONFLICT);
+	}
+	
 	@PostMapping("/customers")
 	public ResponseEntity<Customer> insertCustomer(@RequestBody Customer customer) throws CustomerAlreadyExistException{
 		Customer entity = customerService.insertCustomer(customer);
@@ -39,13 +50,13 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/customer")
-	public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer){
+	public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer) throws CustomerDoesNotExistException{
 		Customer entity = customerService.updateCustomer(customer);
 		return new ResponseEntity<Customer>(entity,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/customer/{id}")
-	public ResponseEntity<String> deleteCustomer(@PathVariable("id") int id){
+	public ResponseEntity<String> deleteCustomer(@PathVariable("id") int id) throws CustomerDoesNotExistException{
 		customerService.deleteCustomer(id);
 		return new ResponseEntity<String>("Customer Deleted",HttpStatus.OK);
 	}
@@ -57,13 +68,13 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/customers/{id}")
-	public ResponseEntity<List<Customer>> getCustomerById(@PathVariable int id){
+	public ResponseEntity<List<Customer>> getCustomerById(@PathVariable int id) throws CustomerDoesNotExistException{
 		List<Customer> customer=customerService.viewCustomerById(id);
 		return new ResponseEntity<List<Customer>>(customer,HttpStatus.OK);
 	}
 	
 	@PostMapping("/tripbooking")
-	public ResponseEntity<TripBooking> insertTripBooking(@RequestBody TripBooking trip){
+	public ResponseEntity<TripBooking> insertTripBooking(@RequestBody TripBooking trip) {
 		TripBooking entity = tripService.insertTripBooking(trip);
 		return new ResponseEntity<TripBooking>(entity,HttpStatus.ACCEPTED);
 	}
