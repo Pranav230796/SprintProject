@@ -53,8 +53,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
 	}
 	
 	@ExceptionHandler(value=CustomerDoesNotExistException.class)
-	public ResponseEntity<String> customertDoesNotExist(CustomerDoesNotExistException customerDoesNotExist){
-		return new ResponseEntity<String>("Report Does Not Exist",HttpStatus.CONFLICT);
+	public ResponseEntity<String> customerDoesNotExist(CustomerDoesNotExistException customerDoesNotExist){
+		return new ResponseEntity<String>("Customer Does Not Exist",HttpStatus.CONFLICT);
+	}
+	
+	@ExceptionHandler(value=TaxiDoesNotExistException.class)
+	public ResponseEntity<String> taxitDoesNotExist(TaxiDoesNotExistException taxiDoesNotExist){
+		return new ResponseEntity<String>("Taxi Does Not Exist",HttpStatus.CONFLICT);
 	}
 }
 

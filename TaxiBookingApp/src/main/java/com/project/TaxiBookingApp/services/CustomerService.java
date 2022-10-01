@@ -59,11 +59,6 @@ public class CustomerService implements ICustomerService{
 		List<Customer> getEntity = RepoService.viewCustomerById(customerId);
 		return getEntity;
 	}
-//	@Override
-//	public Optional<Customer> validateCustomer(String username, String password) {
-//		Optional<Customer> validateEntity=RepoService.findvalidateCustomer(username,password);
-//		return validateEntity;
-//	}
 
 	public boolean customerLogin(Login login) {
 		String username = RepoService.existsByUserName(login.getUsername());

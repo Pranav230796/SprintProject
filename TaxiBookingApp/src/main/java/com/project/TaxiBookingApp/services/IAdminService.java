@@ -16,6 +16,5 @@ public interface IAdminService {
 	List<TripBooking> getAllTrips(int customerId);
 	List<TripBooking> getTripsCustomerWise();
 	List<TripBooking> getTripDatewise();
-//	List<TripBooking> getAllTripsForDays(int customerId,LocalDateTime fromDate, LocalDateTime toDate);
 	boolean adminLogin(Login login);
 }

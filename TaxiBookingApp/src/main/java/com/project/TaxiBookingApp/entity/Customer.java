@@ -9,12 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Customer extends User{
 	
 	@Id
 	private int id;
-	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="cust_id", referencedColumnName = "id")
 	private List<Report> report;
@@ -25,8 +27,8 @@ public class Customer extends User{
 	}
 
 
-	public Customer(String username, String password, String phoneNo, String emailId, int id, List<Report> report) {
-		super(username, password, phoneNo, emailId);
+	public Customer(String username, String password, String phoneNo, String emailId, String address, int id, List<Report> report) {
+		super(username, password, phoneNo, emailId, address);
 		this.id = id;
 		this.report = report;
 	}

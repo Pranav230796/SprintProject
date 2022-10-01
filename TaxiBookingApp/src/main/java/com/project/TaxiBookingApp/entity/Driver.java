@@ -1,8 +1,6 @@
 package com.project.TaxiBookingApp.entity;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -20,7 +18,6 @@ public class Driver extends User{
 	
 	@Id
 	private int driverId;
-	private String address;
 	private String licenceNo;
 	private float rating;
 	@OneToOne
@@ -36,11 +33,10 @@ public class Driver extends User{
 		super();
 	}
 
-	public Driver(String username, String password, String phoneNo, String emailId, int driverId, String address,
+	public Driver(String username, String password, String phoneNo, String emailId, String address, int driverId,
 			String licenceNo, float rating, Taxi taxi,List<TripBooking> trips) {
-		super(username, password, phoneNo, emailId);
+		super(username, password, phoneNo, emailId, address);
 		this.driverId = driverId;
-		this.address = address;
 		this.licenceNo = licenceNo;
 		this.rating = rating;
 		this.taxi = taxi;
@@ -49,10 +45,6 @@ public class Driver extends User{
 
 	public int getDriverId() {
 		return driverId;
-	}
-
-	public String getAddress() {
-		return address;
 	}
 
 	public String getLicenceNo() {
@@ -69,10 +61,6 @@ public class Driver extends User{
 
 	public void setDriverId(int driverId) {
 		this.driverId = driverId;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
 	}
 
 	public void setLicenceNo(String licenceNo) {

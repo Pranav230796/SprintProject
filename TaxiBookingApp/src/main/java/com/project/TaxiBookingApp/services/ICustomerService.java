@@ -12,6 +12,5 @@ public interface  ICustomerService {
 	void deleteCustomer(int CustomerId) throws CustomerDoesNotExistException;
 	List<Customer> viewCustomers();
 	List<Customer>viewCustomerById(int customerId) throws CustomerDoesNotExistException;
-//	Optional<Customer> validateCustomer(String username, String password);
 	
 }

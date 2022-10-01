@@ -21,7 +21,4 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer>{
 
 	@Query(value = "select password from customer where password=:password",nativeQuery=true)
 	public String existsByPassword(String password);
-
-//	@
-//	public Optional<Customer> findvalidateCustomer(String username, String password);
 }

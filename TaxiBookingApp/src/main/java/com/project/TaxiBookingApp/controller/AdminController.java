@@ -1,6 +1,5 @@
 package com.project.TaxiBookingApp.controller;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,11 +62,4 @@ public class AdminController {
 		}
 		return new ResponseEntity<String>("Login failed......",HttpStatus.CONFLICT);
 	}
-	
-//	@GetMapping("/adminDays/{id}/{from}/{to}")
-//	public ResponseEntity<List<TripBooking>> getAllTripsForDays(@PathVariable("id") int customerId,@PathVariable("from") LocalDateTime fromDate,@PathVariable("to") LocalDateTime toDate){
-//		List<TripBooking> list = adminService.getAllTripsForDays(customerId, fromDate, toDate);
-//		return new ResponseEntity<List<TripBooking>>(list,HttpStatus.ACCEPTED);
-//	}
-	
 }

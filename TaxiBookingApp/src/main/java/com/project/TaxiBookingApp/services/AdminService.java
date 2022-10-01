@@ -72,10 +72,4 @@ public class AdminService implements IAdminService{
 		return true;
 	}
 
-//	@Override
-//	public List<TripBooking> getAllTripsForDays(int customerId, LocalDateTime fromDate, LocalDateTime toDate) {
-//		List<TripBooking> list = RepoTripService.getAllTripsForDays(customerId, fromDate, toDate);
-//		return list;
-//	}
-
 }

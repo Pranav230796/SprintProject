@@ -27,6 +27,7 @@ public class TaxiService implements ITaxiService{
 	@Override
 	public Taxi updateTaxi(Taxi taxi) {
 		Taxi updatedEntity=reposerv.save(taxi);
+		reposerv.deleteById(taxi.getTaxiId());;
 		return updatedEntity;
 	}
 	

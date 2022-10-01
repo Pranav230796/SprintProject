@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.TaxiBookingApp.entity.Taxi;
 import com.project.TaxiBookingApp.exception.TaxiAlreadyExistException;
+import com.project.TaxiBookingApp.exception.TaxiDoesNotExistException;
 import com.project.TaxiBookingApp.services.ITaxiService;
 
 @RestController
@@ -24,18 +25,19 @@ public class TaxiController {
 	
 	@PostMapping("/taxi")
 	public ResponseEntity<String> insertTaxi(@RequestBody Taxi taxi) throws TaxiAlreadyExistException{
-		Taxi tax=taxiserv.insertTaxi(taxi);
-		return new ResponseEntity<String>("Taxi saved successfully.",HttpStatus.OK);
+		Taxi tax = taxiserv.insertTaxi(taxi);
+		return new ResponseEntity<String>("Taxi saved successfully." + "Your Id is " + tax.getTaxiId(),HttpStatus.OK);
 	}
 	
-	@PostMapping("/updatetaxi")
-	public ResponseEntity<String> updateTaxi(Taxi taxi){
+	@GetMapping("/updatetaxi")
+	public ResponseEntity<String> updateTaxi(Taxi taxi) throws TaxiDoesNotExistException{
+		System.out.println(taxi.getTaxiId());
 		Taxi tax=taxiserv.updateTaxi(taxi);
 		return new ResponseEntity<String>("Taxi updated successfully.",HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/deletetaxi/{id}")
-	public ResponseEntity<String> deleteTaxi(@PathVariable int id){
+	public ResponseEntity<String> deleteTaxi(@PathVariable int id) throws TaxiDoesNotExistException{
 		taxiserv.deleteTaxi(id);
 		return new ResponseEntity<String>("Taxi deleted successfully.",HttpStatus.OK);
 	}

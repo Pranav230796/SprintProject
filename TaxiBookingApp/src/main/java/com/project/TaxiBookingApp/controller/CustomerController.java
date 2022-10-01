@@ -1,6 +1,5 @@
 package com.project.TaxiBookingApp.controller;
 
-import java.text.ParseException;
 import java.util.List;
 
 
@@ -90,11 +89,5 @@ public class CustomerController {
 		TripBooking entity = tripService.assignCustomer(tripBookingId, custId);
 		return new ResponseEntity<TripBooking>(entity,HttpStatus.ACCEPTED);
 	}
-	
-//	@GetMapping("/customers/validate")
-//	public ResponseEntity<Optional<Customer>> validateCustomer(@PathVariable String username,String password){
-//		Optional<Customer> customer=customerService.validateCustomer(username,password);
-//		return new ResponseEntity<Optional<Customer>>(customer,HttpStatus.OK);
-//	}
 }
 
