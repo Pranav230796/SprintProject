@@ -37,27 +37,27 @@ public class CustomerController {
 	@PostMapping("/customer/login")
 	public ResponseEntity<String> customerLogin(@RequestBody Login login){
 		if(customerService.customerLogin(login)) {
-			return new ResponseEntity<String>("Login Successfull .....",HttpStatus.ACCEPTED);
+			return new ResponseEntity<String>("Login Successful...",HttpStatus.ACCEPTED);
 		}
-		return new ResponseEntity<String>("Login Failed ......",HttpStatus.CONFLICT);
+		return new ResponseEntity<String>("Login Failed...",HttpStatus.CONFLICT);
 	}
 	
 	@PostMapping("/customers")
-	public ResponseEntity<Customer> insertCustomer(@RequestBody Customer customer) throws CustomerAlreadyExistException{
+	public ResponseEntity<String> insertCustomer(@RequestBody Customer customer) throws CustomerAlreadyExistException{
 		Customer entity = customerService.insertCustomer(customer);
-		return new ResponseEntity<Customer>(entity,HttpStatus.ACCEPTED);
+		return new ResponseEntity<String>("Customer registered successfully...",HttpStatus.ACCEPTED);
 	}
 	
 	@PostMapping("/customer")
-	public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer) throws CustomerDoesNotExistException{
+	public ResponseEntity<String> updateCustomer(@RequestBody Customer customer) throws CustomerDoesNotExistException{
 		Customer entity = customerService.updateCustomer(customer);
-		return new ResponseEntity<Customer>(entity,HttpStatus.OK);
+		return new ResponseEntity<String>("Customer details updated successfully...",HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/customer/{id}")
 	public ResponseEntity<String> deleteCustomer(@PathVariable("id") int id) throws CustomerDoesNotExistException{
 		customerService.deleteCustomer(id);
-		return new ResponseEntity<String>("Customer Deleted",HttpStatus.OK);
+		return new ResponseEntity<String>("Customer account deleted successfully...",HttpStatus.OK);
 	}
 	
 	@GetMapping("/customers/view")
