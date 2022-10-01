@@ -28,9 +28,9 @@ public class DriverController {
 	private IDriverService driverService;
 	
 	@PostMapping("/driver")
-	public ResponseEntity<Driver> insertDriver(@RequestBody Driver driver) throws DriverAlreadyExistException{
+	public ResponseEntity<String> insertDriver(@RequestBody Driver driver) throws DriverAlreadyExistException{
 		Driver entity=driverService.insertDriver(driver);
-		return new ResponseEntity<Driver>(entity,HttpStatus.OK);
+		return new ResponseEntity<String>("Driver registered successfully...",HttpStatus.OK);
 	}
 	
 	@PostMapping("/driver/login")
@@ -47,16 +47,16 @@ public class DriverController {
 		return new ResponseEntity<Driver>(entity,HttpStatus.OK);
 	}
 	
-	@PostMapping("/updateDriver")
-	public ResponseEntity<Driver> updateDriver(@RequestBody Driver driver){
+	@PostMapping("/driver/update")
+	public ResponseEntity<String> updateDriver(@RequestBody Driver driver){
 		Driver entity = driverService.updateDriver(driver);
-		return new ResponseEntity<Driver>(entity,HttpStatus.OK);
+		return new ResponseEntity<String>("Driver details updated successfully...",HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/delete/driver/{id}")
+	@DeleteMapping("/driver/delete/{id}")
 	public ResponseEntity<String> deleteDriver(@PathVariable("id") int id) throws DriverDoesNotExistException{
 		driverService.deleteDriver(id);
-		return new ResponseEntity<String>("Driver Deleted",HttpStatus.OK);
+		return new ResponseEntity<String>("Driver account deleted successfully...",HttpStatus.OK);
 	}
 	
 	@GetMapping("/drivers/{id}")

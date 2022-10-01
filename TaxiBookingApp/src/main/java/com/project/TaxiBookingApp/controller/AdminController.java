@@ -27,21 +27,21 @@ public class AdminController {
 	private IAdminService adminService;
 	
 	@PostMapping("/admins")
-	public ResponseEntity<Admin> insertAdmin(@RequestBody Admin admin) throws AdminAlreadyExistException{
+	public ResponseEntity<String> insertAdmin(@RequestBody Admin admin) throws AdminAlreadyExistException{
 		Admin entity = adminService.insertAdmin(admin);
-		return new ResponseEntity<Admin>(entity,HttpStatus.ACCEPTED);
+		return new ResponseEntity<String>("Admin registered successfully...",HttpStatus.ACCEPTED);
 	}
 	
 	@PostMapping("/admin")
-	public ResponseEntity<Admin> updateAdmin(@RequestBody Admin admin){
+	public ResponseEntity<String> updateAdmin(@RequestBody Admin admin){
 		Admin entity = adminService.updateAdmin(admin);
-		return new ResponseEntity<Admin>(entity,HttpStatus.OK);
+		return new ResponseEntity<String>("Admin details updated successfully...",HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/admin/{id}")
 	public ResponseEntity<String> deleteAdmin(@PathVariable("id") int id) throws AdminDoesNotExistException{
 		adminService.deleteAdmin(id);
-		return new ResponseEntity<String>("Admin Deleted",HttpStatus.OK);
+		return new ResponseEntity<String>("Admin account deleted successfully...",HttpStatus.OK);
 	}
 	
 	@GetMapping("/adminTrips")
