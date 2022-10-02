@@ -19,7 +19,7 @@ public class Customer extends User{
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="cust_id", referencedColumnName = "id")
-	private List<Report> report;
+	private List<Feedback> report;
 	
 	
 	public Customer() {
@@ -27,7 +27,7 @@ public class Customer extends User{
 	}
 
 
-	public Customer(String username, String password, String phoneNo, String emailId, String address, int id, List<Report> report) {
+	public Customer(String username, String password, String phoneNo, String emailId, String address, int id, List<Feedback> report) {
 		super(username, password, phoneNo, emailId, address);
 		this.id = id;
 		this.report = report;
@@ -39,7 +39,7 @@ public class Customer extends User{
 	}
 
 
-	public List<Report> getReport() {
+	public List<Feedback> getReport() {
 		return report;
 	}
 
@@ -49,7 +49,7 @@ public class Customer extends User{
 	}
 
 
-	public void setReport(List<Report> report) {
+	public void setReport(List<Feedback> report) {
 		this.report = report;
 	}
 

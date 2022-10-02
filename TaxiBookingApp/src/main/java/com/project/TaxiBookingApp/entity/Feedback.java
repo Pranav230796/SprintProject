@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 @Entity
 
-public class Report {
+public class Feedback {
 	
 	@Id
 	private int id;
@@ -18,12 +18,12 @@ public class Report {
 
 
 
-	public Report() {
+	public Feedback() {
 		super();
 	}
 
 
-	public Report(int id, String content, String licenceNo) {
+	public Feedback(int id, String content, String licenceNo) {
 		super();
 		this.id = id;
 		this.content = content;
