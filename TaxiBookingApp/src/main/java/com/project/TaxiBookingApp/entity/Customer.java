@@ -16,7 +16,6 @@ public class Customer extends User{
 	
 	@Id
 	private int id;
-	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="cust_id", referencedColumnName = "id")
 	private List<Feedback> feedback;

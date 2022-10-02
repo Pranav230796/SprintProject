@@ -15,7 +15,7 @@ public interface ITripBookingRepository extends JpaRepository<TripBooking, Integ
 	@Query(value="select * from trip_booking where customer_id =:Id",nativeQuery = true)
 	public List<TripBooking> getAllTrips(@Param("Id") int customerId);
 	
-	@Query(value="select * from trip_booking order by customer_Id desc",nativeQuery = true)
+	@Query(value="select * from trip_booking order by cust_id desc",nativeQuery = true)
 	public List<TripBooking> getTripsCustomerWise();
 	
 	@Query(value="select * from trip_booking order by from_date_time",nativeQuery = true)

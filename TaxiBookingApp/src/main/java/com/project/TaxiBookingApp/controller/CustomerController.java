@@ -89,5 +89,18 @@ public class CustomerController {
 		TripBooking entity = tripService.assignCustomer(tripBookingId, custId);
 		return new ResponseEntity<TripBooking>(entity,HttpStatus.ACCEPTED);
 	}
+	
+	@GetMapping("/tripbooking/view/{id}")
+	public ResponseEntity<TripBooking> viewAllTripsCustomer(@PathVariable("id") int tripBookingId){
+		TripBooking entity = tripService.viewAllTripsCustomer(tripBookingId);
+		return new ResponseEntity<TripBooking>(entity,HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping("/tripbooking/bill/{id}")
+	public ResponseEntity<Float> calculateBill(@PathVariable("id") int tripBookingId){
+		Float entity = tripService.calculateBill(tripBookingId);
+		return new ResponseEntity<Float>(entity,HttpStatus.ACCEPTED);
+	}
+	
 }
 

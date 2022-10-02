@@ -10,7 +10,7 @@ public abstract class User {
 	
 	@Size(min = 3,max=15,message="Username does not meet the size requirement")
 	private String username;
-	@Pattern(regexp="^[q-z-0]{3}",message="The password can contain only characters and letters ")
+	@Pattern(regexp="^[a-zA-Z0-9]{8}",message="The password can contain only characters and letters ")
 	private String password;
 	@Pattern(regexp="(0/91)?[7-9][0-9]{9}",message="phoneNo should be 10 digits")
 	private String phoneNo;
