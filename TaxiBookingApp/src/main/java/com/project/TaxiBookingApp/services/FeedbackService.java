@@ -18,39 +18,39 @@ public class FeedbackService implements IFeedbackServices {
 	private IFeedbackRepository RepoServ;
 
 	@Override
-	public Feedback insertReport(Feedback report) throws FeedbackAlreadyExistException{
-		if(RepoServ.existsById(report.getId())) {
+	public Feedback insertFeedback(Feedback feedback) throws FeedbackAlreadyExistException{
+		if(RepoServ.existsById(feedback.getId())) {
 			throw new FeedbackAlreadyExistException();
 		}
-		Feedback insertedEntity=RepoServ.save(report);
+		Feedback insertedEntity=RepoServ.save(feedback);
 		return insertedEntity;
 
 	}
 
 	@Override
-	public Feedback updateReport(Feedback report) throws FeedbackDoesNotExistException{
-		if(!RepoServ.existsById(report.getId())) {
+	public Feedback updateFeedback(Feedback feedback) throws FeedbackDoesNotExistException{
+		if(!RepoServ.existsById(feedback.getId())) {
 			throw new FeedbackDoesNotExistException();
 		}
-		Feedback updatedEntity=RepoServ.save(report);
+		Feedback updatedEntity=RepoServ.save(feedback);
 		return updatedEntity;
 
 	}
 
 	@Override
-	public void deleteReport(int reportId) throws FeedbackDoesNotExistException{
-		if(!RepoServ.existsById(reportId)) {
+	public void deleteFeedback(int feedbackId) throws FeedbackDoesNotExistException{
+		if(!RepoServ.existsById(feedbackId)) {
 			throw new FeedbackDoesNotExistException();
 		}
-		RepoServ.deleteById(reportId);
+		RepoServ.deleteById(feedbackId);
 	}
 
 	@Override
-	public Optional<Feedback> viewReport(int reportId) throws FeedbackDoesNotExistException{
-		if(!RepoServ.existsById(reportId)) {
+	public Optional<Feedback> viewFeedback(int feedbacktId) throws FeedbackDoesNotExistException{
+		if(!RepoServ.existsById(feedbacktId)) {
 			throw new FeedbackDoesNotExistException();
 		}
-		Optional<Feedback> getEntity=RepoServ.findById(reportId);
+		Optional<Feedback> getEntity=RepoServ.findById(feedbacktId);
 		return getEntity;
 
 	}

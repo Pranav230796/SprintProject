@@ -28,7 +28,6 @@ public class Feedback {
 		this.id = id;
 		this.content = content;
 		this.licenceNo = licenceNo;
-		//this.customerId = customerId;
 	}
 
 
@@ -46,12 +45,6 @@ public class Feedback {
 		return licenceNo;
 	}
 
-
-//	public int getCustomerId() {
-//		return customerId;
-//	}
-
-
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -65,11 +58,5 @@ public class Feedback {
 	public void setLicenceNo(String licenceNo) {
 		this.licenceNo = licenceNo;
 	}
-
-//
-//	public void setCustomerId(int customerId) {
-//		this.customerId = customerId;
-//	}
-
 	
 }

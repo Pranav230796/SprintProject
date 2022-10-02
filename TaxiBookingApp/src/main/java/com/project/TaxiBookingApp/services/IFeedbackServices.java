@@ -6,8 +6,8 @@ import com.project.TaxiBookingApp.exception.FeedbackAlreadyExistException;
 import com.project.TaxiBookingApp.exception.FeedbackDoesNotExistException;
 
 public interface IFeedbackServices {
-	Feedback insertReport(Feedback report) throws FeedbackAlreadyExistException;
-	Feedback updateReport(Feedback report) throws FeedbackDoesNotExistException;
-	void deleteReport(int reportId) throws FeedbackDoesNotExistException;
-	Optional<Feedback> viewReport(int reportId) throws FeedbackDoesNotExistException;
+	Feedback insertFeedback(Feedback report) throws FeedbackAlreadyExistException;
+	Feedback updateFeedback(Feedback report) throws FeedbackDoesNotExistException;
+	void deleteFeedback(int reportId) throws FeedbackDoesNotExistException;
+	Optional<Feedback> viewFeedback(int reportId) throws FeedbackDoesNotExistException;
 }

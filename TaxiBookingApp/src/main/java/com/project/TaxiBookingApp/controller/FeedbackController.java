@@ -23,29 +23,29 @@ import com.project.TaxiBookingApp.services.IFeedbackServices;
 public class FeedbackController {
 	
 	@Autowired
-	private IFeedbackServices reportService;
+	private IFeedbackServices feedbackService;
 	
-	@PostMapping("/report")
-	public String insertReport(@RequestBody Feedback report) throws FeedbackAlreadyExistException{
-		Feedback entity=reportService.insertReport(report);
-		return "Report added successfully";
+	@PostMapping("/feedback")
+	public ResponseEntity<String> insertFeedback(@RequestBody Feedback feedback) throws FeedbackAlreadyExistException{
+		Feedback entity=feedbackService.insertFeedback(feedback);
+		return new ResponseEntity<String>("Thank you for the Feedback ....", HttpStatus.ACCEPTED);
 	}
 	
-	@PostMapping("/updateReport")
-	public String updateReport(@RequestBody Feedback report) throws FeedbackDoesNotExistException{
-		Feedback entity = reportService.updateReport(report);
-		return "Report updated succesfully";
+	@PostMapping("/feedback/update")
+	public ResponseEntity<String> updateFeedback(@RequestBody Feedback feedback) throws FeedbackDoesNotExistException{
+		Feedback entity = feedbackService.updateFeedback(feedback);
+		return new ResponseEntity<String>("Feedback updated ... ", HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("/delete/report/{id}")
-	public ResponseEntity<String> deleteReport(@PathVariable("id") int id) throws FeedbackDoesNotExistException{
-		reportService.deleteReport(id);
+	public ResponseEntity<String> deleteFeedback(@PathVariable("id") int id) throws FeedbackDoesNotExistException{
+		feedbackService.deleteFeedback(id);
 		return new ResponseEntity<String>("Report Deleted",HttpStatus.OK);
 	}
 	
 	@GetMapping("/reports/{id}")
-	public ResponseEntity<Optional<Feedback>> getReportById(@PathVariable int id) throws FeedbackDoesNotExistException{
-		Optional<Feedback> report=reportService.viewReport(id);
-		return new ResponseEntity<Optional<Feedback>>(report,HttpStatus.OK);
+	public ResponseEntity<Optional<Feedback>> getFeedbackById(@PathVariable int id) throws FeedbackDoesNotExistException{
+		Optional<Feedback> feedback=feedbackService.viewFeedback(id);
+		return new ResponseEntity<Optional<Feedback>>(feedback,HttpStatus.OK);
 	}
 }

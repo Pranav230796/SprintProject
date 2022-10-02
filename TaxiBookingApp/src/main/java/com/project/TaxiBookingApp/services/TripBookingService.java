@@ -46,18 +46,14 @@ public class TripBookingService implements ITripBookingService{
 
 	@Override
 	public TripBooking viewAllTripsCustomer(int custId) {
-		// TODO Auto-generated method stub
 		TripBooking result = tripRepo.findById(custId).get();
 		return result;
 	}
 
 	@Override
 	public float calculateBill(int custid) {
-		// TODO Auto-generated method stub
 		TripBooking result = tripRepo.findById(custid).get();
-		
 		float rate = result.getDriver().getTaxi().getPerKmrate();
-		
 		return rate * result.getDistanceInKm();
 	}
 
