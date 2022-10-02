@@ -2,12 +2,17 @@ package com.project.TaxiBookingApp.entity;
 
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @MappedSuperclass
 public abstract class User {
 	
+	@Size(min = 3,max=15,message="Username does not meet the size requirement")
 	private String username;
+	@Pattern(regexp="^[q-z-0]{3}",message="The password can contain only characters and letters ")
 	private String password;
+	@Pattern(regexp="(0/91)?[7-9][0-9]{9}",message="phoneNo should be 10 digits")
 	private String phoneNo;
 	@Email(message = "Enter valid email.....")
 	private String emailId;
