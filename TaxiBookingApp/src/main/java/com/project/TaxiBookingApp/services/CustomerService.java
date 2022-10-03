@@ -12,6 +12,7 @@ import com.project.TaxiBookingApp.entity.Login;
 import com.project.TaxiBookingApp.exception.CustomerAlreadyExistException;
 import com.project.TaxiBookingApp.exception.CustomerDoesNotExistException;
 import com.project.TaxiBookingApp.repository.ICustomerRepository;
+import com.project.TaxiBookingApp.repository.ITripBookingRepository;
 
 
 @Service
@@ -19,6 +20,8 @@ public class CustomerService implements ICustomerService{
 	
 	@Autowired
 	private ICustomerRepository RepoService;
+	@Autowired
+	private ITripBookingRepository RepoTripServ;
 
 	@Override
 	public Customer insertCustomer(Customer customer) throws CustomerAlreadyExistException{
@@ -42,6 +45,9 @@ public class CustomerService implements ICustomerService{
 	public void deleteCustomer(int CustomerId) throws CustomerDoesNotExistException{
 		if(!RepoService.existsById(CustomerId)) {
 			throw new CustomerDoesNotExistException();
+		}
+		if(RepoTripServ.existsById(CustomerId)) {
+			RepoTripServ.deleteById(CustomerId);
 		}
 		RepoService.deleteById(CustomerId);
 	}

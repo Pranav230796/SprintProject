@@ -13,6 +13,7 @@ import com.project.TaxiBookingApp.exception.DriverAlreadyExistException;
 import com.project.TaxiBookingApp.exception.DriverDoesNotExistException;
 import com.project.TaxiBookingApp.repository.IDriverRepository;
 import com.project.TaxiBookingApp.repository.ITaxiRepository;
+import com.project.TaxiBookingApp.repository.ITripBookingRepository;
 
 
 @Service
@@ -22,6 +23,8 @@ public class DriverService implements IDriverService{
 	private IDriverRepository RepoServ;
 	@Autowired
 	private ITaxiRepository RepoTaxiServ;
+	@Autowired 
+	private ITripBookingRepository RepoTripServ;
 	
 	@Override
 	public Driver insertDriver(Driver driver) throws DriverAlreadyExistException{
@@ -34,6 +37,9 @@ public class DriverService implements IDriverService{
 	
 	@Override
 	public Driver updateDriver(Driver driver) {
+		if(RepoTripServ.existsById(driver.getDriverId())) {
+			RepoTripServ.deleteById(driver.getDriverId());
+		}
 		Driver updatedEntity=RepoServ.save(driver);
 		return updatedEntity;
 	}
@@ -41,6 +47,9 @@ public class DriverService implements IDriverService{
 	public void deleteDriver(int driverId) throws DriverDoesNotExistException{
 		if(!RepoServ.existsById(driverId)) {
 			throw new DriverDoesNotExistException();
+		}
+		if(RepoTripServ.existsById(driverId)) {
+			RepoTripServ.deleteById(driverId);
 		}
 		RepoServ.deleteById(driverId);
 	}

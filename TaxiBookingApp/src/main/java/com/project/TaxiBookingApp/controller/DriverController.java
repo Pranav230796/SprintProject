@@ -34,7 +34,7 @@ public class DriverController {
 	}
 	
 	@PostMapping("/driver/login")
-	public ResponseEntity<String> adminLogin(@RequestBody Login login){
+	public ResponseEntity<String> driverLogin(@RequestBody Login login){
 		if(driverService.driverLogin(login)) {
 			return new ResponseEntity<String>("Login Successful.....",HttpStatus.ACCEPTED);
 		}

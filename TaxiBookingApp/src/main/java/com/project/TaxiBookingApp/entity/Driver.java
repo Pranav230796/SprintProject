@@ -26,7 +26,7 @@ public class Driver extends User{
 	private Taxi taxi;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "driver", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
 	private List<TripBooking> trips;
 	
 	
