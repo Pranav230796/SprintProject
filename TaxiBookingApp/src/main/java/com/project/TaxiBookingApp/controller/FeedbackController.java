@@ -37,13 +37,13 @@ public class FeedbackController {
 		return new ResponseEntity<String>("Feedback updated ... ", HttpStatus.ACCEPTED);
 	}
 	
-	@DeleteMapping("/delete/report/{id}")
+	@DeleteMapping("/delete/feedback/{id}")
 	public ResponseEntity<String> deleteFeedback(@PathVariable("id") int id) throws FeedbackDoesNotExistException{
 		feedbackService.deleteFeedback(id);
 		return new ResponseEntity<String>("Report Deleted",HttpStatus.OK);
 	}
 	
-	@GetMapping("/reports/{id}")
+	@GetMapping("/feedback/{id}")
 	public ResponseEntity<Optional<Feedback>> getFeedbackById(@PathVariable int id) throws FeedbackDoesNotExistException{
 		Optional<Feedback> feedback=feedbackService.viewFeedback(id);
 		return new ResponseEntity<Optional<Feedback>>(feedback,HttpStatus.OK);

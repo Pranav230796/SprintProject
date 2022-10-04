@@ -43,13 +43,19 @@ public class AdminController {
 		return new ResponseEntity<String>("Admin account deleted successfully...",HttpStatus.OK);
 	}
 	
-	@GetMapping("/adminTrips")
+	@GetMapping("/adminTrips/{id}")
+	public ResponseEntity<List<TripBooking>> getAllTrips(@PathVariable("id") int customerId){
+		List<TripBooking> list = adminService.getAllTrips(customerId);
+		return new ResponseEntity<List<TripBooking>>(list,HttpStatus.OK);
+	}
+	
+	@GetMapping("/adminTrips/customer")
 	public ResponseEntity<List<TripBooking>> getTripsCustomerWise(){
 		List<TripBooking> list = adminService.getTripsCustomerWise();
 		return new ResponseEntity<List<TripBooking>>(list,HttpStatus.OK);
 	}
 	
-	@GetMapping("/adminDatewise")
+	@GetMapping("/adminTrips/Datewise")
 	public ResponseEntity<List<TripBooking>> getTripDatewise(){
 		List<TripBooking> list = adminService.getTripDatewise();
 		return new ResponseEntity<List<TripBooking>>(list,HttpStatus.OK);

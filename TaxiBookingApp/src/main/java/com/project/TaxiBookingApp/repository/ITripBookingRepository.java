@@ -12,7 +12,7 @@ import com.project.TaxiBookingApp.entity.TripBooking;
 @Repository
 public interface ITripBookingRepository extends JpaRepository<TripBooking, Integer> {
 
-	@Query(value="select * from trip_booking where customer_id =:Id",nativeQuery = true)
+	@Query(value="select * from trip_booking where cust_id =:Id",nativeQuery = true)
 	public List<TripBooking> getAllTrips(@Param("Id") int customerId);
 	
 	@Query(value="select * from trip_booking order by cust_id desc",nativeQuery = true)
