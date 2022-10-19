@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: taxi-booking-app
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: taxi-booking-app
+    spec:
+      containers:
+        - name: spring-boot-example
+          image: 'gcr.io/fleet-resolver-237016/taxi-booking-app:v1'
+          ports:
+            - containerPort: 8080
