@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taxi-booking-app
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: taxi-booking-app
+  template:
+    metadata:
+      name: taxi-booking-app
+      labels:
+        app: taxi-booking-app
+    spec:
+      containers:
+      - name: taxi-booking-app
+        env:
+          - name: POSTGRES_USER
+            valueFrom:
+              configMapKeyRef:
+                name: postgres-config
+                key: postgres_user
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: postgres-config
+                key: postgres_password
+          - name: POSTGRES_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: hostname-config
+                key: postgres_host
+        image: gcr.io/cg-gcp-jee-pt-09-07-22-160/taxi-booking-app:v1
